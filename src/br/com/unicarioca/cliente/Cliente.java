@@ -1,45 +1,53 @@
 package br.com.unicarioca.cliente;
 
+import br.com.unicarioca.historico.Historico;
+import br.com.unicarioca.pedido.Pedido;
 import br.com.unicarioca.usuario.Usuario;
 
-public class Cliente extends Usuario {
+import java.util.List;
 
+public class Cliente extends Usuario {
     private String aniversario;
     private String CPF;
+    private List<Pedido> listaPedidos;
+    private List<Historico> listaHistorico;
 
     public Cliente(String nome, String endereco, String telefone, String email, String aniversario, String CPF) {
         super(nome, endereco, telefone, email);
         this.aniversario = aniversario;
         this.CPF = CPF;
+        boasVindas();
     }
 
-    @Override
-    public void Vender() {
-
+    public void boasVindas() {
+        System.out.println("Cliente criado");
     }
 
-    @Override
-    public void Comprar() {
-
+    public void cancelar(Pedido pedido) {
+        listaPedidos.remove(pedido);
+        System.out.println("Pedido removido da lista");
     }
 
-    @Override
-    public void Cancelar() {
-
+    public void historicoCompras(List<Pedido> itens) {
+        System.out.println("Pedidos que foram realizados");
+        for (Pedido iten : itens) {
+            System.out.println("  "+iten.getDescricaoProduto()+" - "+"Qtde: "+iten.getQuantidade());
+        }
     }
 
-    @Override
-    public void Devolucao() {
-
+    public List<Pedido> getListaPedidos() {
+        return listaPedidos;
     }
 
-    @Override
-    public void StatusVenda() {
-
+    public void setListaPedidos(List<Pedido> listaPedidos) {
+        this.listaPedidos = listaPedidos;
     }
 
-    @Override
-    public void HistoricoVendas() {
+    public List<Historico> getListaHistorico() {
+        return listaHistorico;
+    }
 
+    public void setListaHistorico(List<Historico> listaHistorico) {
+        this.listaHistorico = listaHistorico;
     }
 }
